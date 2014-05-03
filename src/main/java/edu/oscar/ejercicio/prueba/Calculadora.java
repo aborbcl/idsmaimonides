@@ -11,5 +11,26 @@ public class Calculadora {
                 x = num/denum;
        
                 return x;
+    }
+        
+        public Double Multiplicar(double num, double denum)
+        {
+                double x = 0;
+                x = num * denum;
+                return x;
+        }
+        
+        public Double Sumar(double num, double denum)
+        {
+                double x = 0;
+                x = num + denum;
+                return x;
+        }
+        
+        public Double Restar(double num, double denum)
+        {
+                double x = 0;
+                x = num - denum;
+                return x;
         }
 }
