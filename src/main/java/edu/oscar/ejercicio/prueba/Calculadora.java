@@ -9,9 +9,8 @@ public class Calculadora {
                 	return null;
                 }
                 x = num/denum;
-       
                 return x;
-    }
+        }
         
         public Double Multiplicar(double num, double denum)
         {
