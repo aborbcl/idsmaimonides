@@ -21,7 +21,7 @@ public class CalculadoraTest extends TestCase{
     }
 	
     public void testDividir() throws CalculadoraException{
-        System.out.println("division");
+        //System.out.println("division");
         double num = 6.0;
         double denum = 3.0;
         Calculadora instance = new Calculadora();

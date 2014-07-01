@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import junit.framework.TestCase;
 
-public class ConnectionHSQLTest extends TestCase{
+public class ConnectionHSQLTest extends TestCase {
 	public ConnectionHSQLTest(String testName) {
         super(testName);
     }
@@ -28,5 +28,4 @@ public class ConnectionHSQLTest extends TestCase{
         Connection result = instance.createConn();
         assertNotNull(!result.isClosed());
     }
-
 }

@@ -1,23 +1,25 @@
 package edu.oscar.ejercicio.prueba;
 
+import static org.junit.Assert.*;
+
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 
 import junit.framework.TestCase;
 
-public class PersonaDAOHSQLTest extends TestCase {
-PersonaDAOHSQL pdao;
-    
-    public PersonaDAOHSQLTest(String testName) {
+import org.hsqldb.Statement;
+import org.junit.Test;
+
+public class PersonaDAOHSQLTest extends TestCase{
+	public PersonaDAOHSQL pdao; 
+	public PersonaDAOHSQLTest(String testName) {
         super(testName);
     }
     
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        
         ModeloDB modelo=new ModeloDB();
         ConnectionHSQL CHSQLF = new ConnectionHSQL();
         destroyDatabase(CHSQLF);
@@ -29,7 +31,7 @@ PersonaDAOHSQL pdao;
 
     private void destroyDatabase(ConnectionHSQL CHSQLF) throws SQLException {
         Connection conn  = CHSQLF.createConn();
-        Statement stst = conn.createStatement();
+        Statement stst = (Statement) conn.createStatement();
         stst.execute("SHUTDOWN");
     }
     
@@ -38,155 +40,112 @@ PersonaDAOHSQL pdao;
         super.tearDown();
     }
 
-    /**
-     * Test of crear method, of class PersonaDAOHSQL.
-     * @throws java.lang.Exception
-     */
-    public void testAlta() throws Exception {
-        System.out.println("alta");
+    public void testCrear() throws Exception {
+        System.out.println("crear");
 
         Persona pp = new Persona();
-        pp.setDni(94425677);
-        pp.setNombre("Os");
-        pp.setApellido("Bor");
-        boolean result = pdao.alta(pp);
+        pp.setDni(120120000);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
+        boolean result = pdao.crear(pp);
         assertTrue(result);
-        
-        List lista = (List) pdao.listar();
+        List lista = pdao.listar();
         Object PersonaNueva = lista.get(0);
         assertEquals(PersonaNueva, pp);
 
     }
 
-    /**
-     * Test of borrar method, of class PersonaDAOHSQL.
-     */
-    public void testbaja() throws Exception {
-        System.out.println("baja");
+    public void testBorrar() throws Exception {
+        System.out.println("borrar");
         Persona pp = new Persona();
         List listaTest;
-                
-        pp.setDni(94606766);
-        pp.setNombre("Lu");
-        pp.setApellido("bc");
-        pdao.baja(pp);
-        listaTest = (List) pdao.listar();
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
+        pdao.crear(pp);
+        listaTest = pdao.listar();
         assertFalse(listaTest.isEmpty());
-        
-        
         boolean expResult = false;
-        boolean result = pdao.baja(pp);
+        boolean result = pdao.borrar(pp);
         assertTrue(result);
-        listaTest = (List) pdao.listar();
+        listaTest = pdao.listar();
         assertTrue(listaTest.isEmpty());
-
-        
     }
-
-    /**
-     * Test of guardar method, of class PersonaDAOHSQL.
-     */
-    public void testModif() throws Exception {
-        System.out.println("Modif");
+    public void testGuardar() throws Exception {
+        System.out.println("Guardar");
         
         Persona pp = new Persona();
-        pp.setDni(80932249);
-        pp.setNombre("Os");
-        pp.setApellido("Bor");
-        pdao.modif(pp);
-        
-        pp.setNombre("Roc");
-        
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
+        pdao.crear(pp);
+        pp.setNombre("Pepe");
         boolean expResult = false;
-        if(!pdao.modif(pp)){
+        if(!pdao.guardar(pp)){
             fail();
         }
-
-        List<Persona> result=(List<Persona>) pdao.listar();
+        List<Persona> result=pdao.listar();
         assertEquals(result.size(), 1); 
-        Persona DatosModificados = result.get(0);
-        assertEquals(DatosModificados, pp);
-
+        Persona PersonaModificada = result.get(0);
+        assertEquals(PersonaModificada, pp);
     }
-
-    /**
-     * Test of listar method, of class PersonaDAOHSQL.
-     * @throws java.sql.SQLException
-     */
     public void testListar() throws SQLException {
         System.out.println("listar");
-        
         Persona pp = new Persona();
-        pp.setDni(87655444);
-        pp.setNombre("Pedro");
-        pp.setApellido("Kremer");
-        pdao.alta(pp);
-        
-        List result = (List) pdao.listar();
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
+        pdao.crear(pp);
+        List result = pdao.listar();
         assertFalse(result.isEmpty());
     }
     
      public void testCrear2Usuarios() throws SQLException {
-        System.out.println("Crea 2 Usuarios");
-        
+        System.out.println("Crear 2 Usuarios");
         Persona pp = new Persona();
-        pp.setDni(12345677);
-        pp.setNombre("Camilo");
-        pp.setApellido("Roque");
-        pdao.alta(pp);
-        pdao.alta(pp);
-        
-        List result = (List) pdao.listar();
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
+        pdao.crear(pp);
+        pdao.crear(pp);
+        List result = pdao.listar();
         assertEquals(result.size(), 2);
-        
     }
-    
-      public void testCrear2UsuariosBorrar1() throws SQLException {
-        System.out.println("Crea 2 , Borrar 1");
+        public void testCrear2UsuariosBorrar1() throws SQLException {
+        System.out.println("Crear 2 , Borrar 1");
         List result;
-                
         Persona pp1 = new Persona();
         Persona pp2 = new Persona();
         pp1.setDni(12012771);
         pp1.setNombre("Juan");
         pp1.setApellido("Lope");
-        pdao.alta(pp1);
-        
-        pp2.setDni(124567);
-        pp2.setNombre("Pablo");
-        pp2.setApellido("Ivanoff");
-        pdao.alta(pp2);
-        
-        result = (List) pdao.listar();
+        pdao.crear(pp1);
+        pp2.setDni(12012772);
+        pp2.setNombre("Juan");
+        pp2.setApellido("Lope");
+        pdao.crear(pp2);
+        result = pdao.listar();
         assertEquals(result.size(), 2);
-        
-        pdao.baja(pp2);
-        
-        result = (List) pdao.listar();        
-        Persona DatosModificados = (Persona) result.get(0);
-        assertEquals(DatosModificados, pp1);
+        pdao.borrar(pp2);
+        result = pdao.listar();        
+        Persona PersonaModificada = (Persona) result.get(0);
+        assertEquals(PersonaModificada, pp1);
         assertEquals(result.size(), 1);
-        
-        
+             
     }
-      
         public void testCrear3Modificar1() throws SQLException {
-        System.out.println("Crea 3 , Modifica 1");
-        
-        Persona pp1 = new Persona("Lucas", "Papas", 8510087,0);
-        Persona pp2 = new Persona("Rubén", "Pecas", 8510089,0);
-        Persona pp3 = new Persona("Martín", "Pablos", 8510085,0);
-        pdao.alta(pp1);
-        pdao.alta(pp2);
-        pdao.alta(pp3);
-        
+        System.out.println("Crear 3 - Modificar 1");
+        Persona pp1 = new Persona("Juan", "Lope", 12012001);
+        Persona pp2 = new Persona("Juan", "Lope", 12012002);
+        Persona pp3 = new Persona("Juan", "Lope", 12012003);
+        pdao.crear(pp1);
+        pdao.crear(pp2);
+        pdao.crear(pp3);
         pp3.setNombre("Jose");
-        pdao.modif(pp3);
-        
-        List result = (List) pdao.listar();
+        pdao.guardar(pp3);
+        List result = pdao.listar();
         assertTrue(result.contains(pp1));
         assertTrue(result.contains(pp2));
         assertTrue(result.contains(pp3));
     }
-
 }
