@@ -102,7 +102,7 @@ public class CalculadoraViewSwing extends JFrame implements CalculadoraView{
 
 			double x = Double.parseDouble(num.getText());
 			double y = Double.parseDouble(denum.getText());
-			mostrarResultado(cal.Sumar(x,y).toString());
+			mostrarResultado(Double.toString(cal.Sumar(x,y)));
 			}
 		}
 
@@ -134,7 +134,7 @@ public class CalculadoraViewSwing extends JFrame implements CalculadoraView{
 			if(!camposVacios()){
 			double x = Double.parseDouble(num.getText());
 			double y = Double.parseDouble(denum.getText());
-			mostrarResultado(cal.Restar(x,y).toString());
+			mostrarResultado(Double.toString(cal.Restar(x,y)));
 			}
 		}
 
@@ -166,7 +166,7 @@ public class CalculadoraViewSwing extends JFrame implements CalculadoraView{
 
 			double x = Double.parseDouble(num.getText());
 			double y = Double.parseDouble(denum.getText());
-			mostrarResultado(cal.Multiplicar(x,y).toString());
+			mostrarResultado(Double.toString(cal.Multiplicar(x,y)));
 			}
 			
 		}
@@ -201,7 +201,7 @@ public class CalculadoraViewSwing extends JFrame implements CalculadoraView{
 			double x = Double.parseDouble(num.getText());
 			double y = Double.parseDouble(denum.getText());
 			try {
-				mostrarResultado(cal.dividir(x,y).toString());
+				mostrarResultado(Double.toString(cal.dividir(x,y)));
 			} catch (CalculadoraException e) {
 				mostrarError("No se puede dividir por 0");
 
