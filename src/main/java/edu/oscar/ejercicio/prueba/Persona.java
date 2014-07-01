@@ -5,11 +5,11 @@ public class Persona {
     {
     }
 
-    public Persona(String Nombre, String Apellido, int DNI, int EDAD)
+    public Persona(String Nombre, String Apellido, int dni)
     {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.dni = DNI;
+        this.dni = dni;
     }
 
     public boolean equals(Object obj)
@@ -56,5 +56,4 @@ public class Persona {
     private String Nombre;
     private String Apellido;
     private int dni;
-
 }

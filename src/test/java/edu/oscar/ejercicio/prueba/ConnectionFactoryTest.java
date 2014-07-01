@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 public class ConnectionFactoryTest extends TestCase {
 	public ConnectionFactoryTest(String testName) {
         super(testName);
@@ -35,15 +37,14 @@ public class ConnectionFactoryTest extends TestCase {
     
         public void testCreateConnFail() throws Exception {
         System.out.println("createConn");
-        String URL = "jdbc:hsql:mem:mymemdb";
+        String URL = "jdbasdasdasdasdc:lakjsdhlajshlkahsdlkahsldjh:mem:mymemdb";
         ConnectionFactory instance = new ConnectionFactory();
         Connection expResult = null;
         try{
             Connection result = instance.createConn(URL);
             fail();
-        }
-        catch(SQLException ee){
+        }catch(SQLException ee){
             ee.printStackTrace();
         }
-    }
+   }
 }
