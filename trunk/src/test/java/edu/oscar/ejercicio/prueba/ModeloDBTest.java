@@ -2,6 +2,8 @@ package edu.oscar.ejercicio.prueba;
 
 import java.sql.Connection;
 
+import main.ConnectionHSQL;
+import main.ModeloDB;
 import junit.framework.TestCase;
 
 public class ModeloDBTest extends TestCase {
