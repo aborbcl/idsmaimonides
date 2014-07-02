@@ -1,5 +1,6 @@
 package edu.oscar.ejercicio.prueba;
 
+
 import static org.junit.Assert.*;
 
 import java.awt.List;
@@ -8,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
+import main.ConnectionHSQL;
+import main.ModeloDB;
+import main.Persona;
+import main.PersonaDAOHSQL;
 
 import org.hsqldb.Statement;
 import org.junit.Test;
@@ -51,9 +56,9 @@ public class PersonaDAOHSQLTest extends TestCase{
         System.out.println("Guardar");
         
         Persona pp = new Persona();
-        pp.setDni(94425677);
-        pp.setNombre("oscar");
-        pp.setApellido("borbon");
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lode");
         pdao.crear(pp);
         pp.setNombre("Pepe");
         boolean expResult = false;
@@ -69,9 +74,9 @@ public class PersonaDAOHSQLTest extends TestCase{
         System.out.println("crear");
 
         Persona pp = new Persona();
-        pp.setDni(94606766);
-        pp.setNombre("lucia");
-        pp.setApellido("bulla");
+        pp.setDni(120120000);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
         boolean result = pdao.crear(pp);
         assertTrue(result);
         ArrayList lista = pdao.listar();
@@ -84,9 +89,9 @@ public class PersonaDAOHSQLTest extends TestCase{
         System.out.println("borrar");
         Persona pp = new Persona();
         ArrayList listaTest;
-        pp.setDni(94425677);
-        pp.setNombre("oscar");
-        pp.setApellido("borbon");
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
         pdao.crear(pp);
         listaTest = pdao.listar();
         assertFalse(listaTest.isEmpty());
@@ -99,9 +104,9 @@ public class PersonaDAOHSQLTest extends TestCase{
     public void testListar() throws SQLException {
         System.out.println("listar");
         Persona pp = new Persona();
-        pp.setDni(94425677);
-        pp.setNombre("oscar");
-        pp.setApellido("borbon");
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
         pdao.crear(pp);
         ArrayList result = pdao.listar();
         assertFalse(result.isEmpty());
@@ -110,9 +115,9 @@ public class PersonaDAOHSQLTest extends TestCase{
      public void testCrear2Usuarios() throws SQLException {
         System.out.println("Crear 2 Usuarios");
         Persona pp = new Persona();
-        pp.setDni(94425677);
-        pp.setNombre("oscar");
-        pp.setApellido("borbon");
+        pp.setDni(12012771);
+        pp.setNombre("Juan");
+        pp.setApellido("Lope");
         pdao.crear(pp);
         pdao.crear(pp);
         ArrayList result = pdao.listar();
@@ -123,13 +128,13 @@ public class PersonaDAOHSQLTest extends TestCase{
         ArrayList result;
         Persona pp1 = new Persona();
         Persona pp2 = new Persona();
-        pp1.setDni(94224655);
-        pp1.setNombre("camilo");
-        pp1.setApellido("zip");
+        pp1.setDni(12012771);
+        pp1.setNombre("Juan");
+        pp1.setApellido("Lope");
         pdao.crear(pp1);
-        pp2.setDni(96412412);
-        pp2.setNombre("jf");
-        pp2.setApellido("lupe");
+        pp2.setDni(12012772);
+        pp2.setNombre("Juan");
+        pp2.setApellido("Lope");
         pdao.crear(pp2);
         result = pdao.listar();
         assertEquals(result.size(), 2);
@@ -142,13 +147,13 @@ public class PersonaDAOHSQLTest extends TestCase{
     }
         public void testCrear3Modificar1() throws SQLException {
         System.out.println("Crear 3 - Modificar 1");
-        Persona pp1 = new Persona("jose", "ball", 80932249);
-        Persona pp2 = new Persona("diego", "borbon", 80125455);
-        Persona pp3 = new Persona("manuel", "bulla", 1025125111);
+        Persona pp1 = new Persona("Juan", "Lope", 12012001);
+        Persona pp2 = new Persona("Juan", "Lope", 12012002);
+        Persona pp3 = new Persona("Juan", "Lope", 12012003);
         pdao.crear(pp1);
         pdao.crear(pp2);
         pdao.crear(pp3);
-        pp3.setNombre("samuel");
+        pp3.setNombre("Jose");
         pdao.guardar(pp3);
         ArrayList result = pdao.listar();
         assertTrue(result.contains(pp1));
