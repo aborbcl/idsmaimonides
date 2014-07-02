@@ -7,7 +7,7 @@ import org.junit.Test;
 public class CalculadoraTestDos {
 
 	@Test
-	public void dividir() {
+	public void dividir() throws CalculadoraException {
 		Calculadora calc = new Calculadora();
 		Double x = calc.dividir(4, 2);
 		System.out.println(x);

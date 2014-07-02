@@ -10,8 +10,8 @@ public class ConnectionHSQL {
 	    public Connection createConn()
 	        throws SQLException
 	    {
-	        ConnectionFactory mifactory = new ConnectionFactory();
-	        Connection conn = mifactory.createConn("jdbc:hsqldb:mem:db");
+	        ConnectionURL mifactory = new ConnectionURL();
+	        Connection conn = mifactory.connect("jdbc:hsqldb:mem:db");
 	        return conn;
 	    }
 }
