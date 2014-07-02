@@ -2,7 +2,7 @@ package edu.oscar.ejercicio.prueba;
 
 import java.sql.Connection;
 
-public interface ConnectionFactory{
-	public abstract Connection CreaConexion(String s)
-	throws Exception;
+public interface ConnectionFactory {
+	public abstract Connection creaConexion(String s)
+	        throws Exception;
 }

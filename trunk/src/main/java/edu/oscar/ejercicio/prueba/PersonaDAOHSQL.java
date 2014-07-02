@@ -3,11 +3,11 @@ package edu.oscar.ejercicio.prueba;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import org.hsqldb.Statement;
 
 public class PersonaDAOHSQL implements PersonaDAO{
 	public PersonaDAOHSQL(Connection myconn)
@@ -40,8 +40,8 @@ public class PersonaDAOHSQL implements PersonaDAO{
         return pstmt.executeUpdate() == 1;
 	}
 
-	public Collection listar() throws SQLException {
-		List listaDePersonas = new ArrayList();
+	public ArrayList listar() throws SQLException {
+		ArrayList listaDePersonas = new ArrayList();
         String query = "SELECT * FROM Personas";
         Statement stst = conn.createStatement();
         Persona nPersona;
@@ -56,11 +56,5 @@ public class PersonaDAOHSQL implements PersonaDAO{
         return listaDePersonas;
 
 	}
-	public volatile Collection listar()
-	        throws SQLException
-	    {
-	        return listar();
-	    }
-
     Connection conn;
 }
