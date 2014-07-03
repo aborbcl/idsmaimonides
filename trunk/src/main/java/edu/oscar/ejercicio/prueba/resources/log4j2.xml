@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+
+    <File name="MyFile" fileName="logs/log.txt">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </File>
+  </Appenders>
+  <Loggers>
+    <Root level="debug">
+      <AppenderRef ref="MyFile"/>
+    </Root>
+    <Logger name="$package" level="$level" additivity="false">
+      <AppenderRef ref="MyFile" level="$file_level" />
+    </Logger>
+  </Loggers>
+</Configuration>
