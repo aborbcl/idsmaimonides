@@ -2,7 +2,7 @@ package edu.oscar.ejercicio.prueba;
 
 import java.sql.Connection;
 
-import main.ConnectionHSQL;
+import edu.oscar.ejercicio.prueba.ConnectionHSQL;
 import junit.framework.TestCase;
 
 public class ConnectionHSQLTest extends TestCase {

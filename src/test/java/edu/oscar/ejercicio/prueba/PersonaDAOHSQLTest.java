@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
-import main.ConnectionHSQL;
-import main.ModeloDB;
-import main.Persona;
-import main.PersonaDAOHSQL;
+import edu.oscar.ejercicio.prueba.ConnectionHSQL;
+import edu.oscar.ejercicio.prueba.ModeloDB;
+import edu.oscar.ejercicio.prueba.Persona;
+import edu.oscar.ejercicio.prueba.PersonaDAOHSQL;
 
 import org.hsqldb.Statement;
 import org.junit.Test;
@@ -115,9 +115,9 @@ public class PersonaDAOHSQLTest extends TestCase{
      public void testCrear2Usuarios() throws SQLException {
         System.out.println("Crear 2 Usuarios");
         Persona pp = new Persona();
-        pp.setDni(12012771);
-        pp.setNombre("Juan");
-        pp.setApellido("Lope");
+        pp.setDni(80945666);
+        pp.setNombre("andres");
+        pp.setApellido("hurguen");
         pdao.crear(pp);
         pdao.crear(pp);
         ArrayList result = pdao.listar();
@@ -128,13 +128,13 @@ public class PersonaDAOHSQLTest extends TestCase{
         ArrayList result;
         Persona pp1 = new Persona();
         Persona pp2 = new Persona();
-        pp1.setDni(12012771);
-        pp1.setNombre("Juan");
-        pp1.setApellido("Lope");
+        pp1.setDni(94425677);
+        pp1.setNombre("oscar");
+        pp1.setApellido("borbon");
         pdao.crear(pp1);
-        pp2.setDni(12012772);
-        pp2.setNombre("Juan");
-        pp2.setApellido("Lope");
+        pp2.setDni(94425677);
+        pp2.setNombre("lauren");
+        pp2.setApellido("bulla");
         pdao.crear(pp2);
         result = pdao.listar();
         assertEquals(result.size(), 2);
@@ -147,13 +147,13 @@ public class PersonaDAOHSQLTest extends TestCase{
     }
         public void testCrear3Modificar1() throws SQLException {
         System.out.println("Crear 3 - Modificar 1");
-        Persona pp1 = new Persona("Juan", "Lope", 12012001);
-        Persona pp2 = new Persona("Juan", "Lope", 12012002);
-        Persona pp3 = new Persona("Juan", "Lope", 12012003);
+        Persona pp1 = new Persona("mario", "duarte", 80221455);
+        Persona pp2 = new Persona("joaquin", "sabina", 89034566);
+        Persona pp3 = new Persona("pedro", "pablo", 80932249);
         pdao.crear(pp1);
         pdao.crear(pp2);
         pdao.crear(pp3);
-        pp3.setNombre("Jose");
+        pp3.setNombre("pepa");
         pdao.guardar(pp3);
         ArrayList result = pdao.listar();
         assertTrue(result.contains(pp1));
